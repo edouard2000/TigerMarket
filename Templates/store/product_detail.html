@@ -5,7 +5,6 @@
 <section class="section-content padding-y bg">
     <div class="container">
     
-    <!-- ============================ COMPONENT 1 ================================= -->
     <div class="card">
         <div class="row no-gutters">
             <aside class="col-md-6">
@@ -66,14 +65,18 @@
                   </label>
                 </div> 
             </div>
-        </div> <!-- row.// -->
+        </div>
         <hr>
-        <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
-    </article> <!-- product-info-aside .// -->
-            </main> <!-- col.// -->
-        </div> <!-- row.// -->
-    </div> <!-- card.// -->
-    <!-- ============================ COMPONENT 1 END .// ================================= -->
+        {% if single_product.stock <= 0 %}
+           <h5> Out oo stock </h5>
+           {% else %}
+              <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+           {% endif %}
+    </article> 
+            </main> 
+        </div> 
+    </div> 
+  
     
     <br>
     
