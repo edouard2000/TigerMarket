@@ -128,23 +128,24 @@
 
             <div class="col-md-4">
                 <figure class="card card-product-grid">
-                    <div class="img-wrap"> 
+                    <div class="img-wrap">  
+                        <a href="{% url 'product_detail' product.category.slug product.slug %}">
+                            <img src="{{ product.images.url }}" alt="{{ product.product_name }}">
+                        </a>
                         
-                        <img src=" {{ product.images.url }} ">
-                        
-                    </div> <!-- img-wrap.// -->
+                    </div> 
                     <figcaption class="info-wrap">
                         <div class="fix-height">
                             <a href="./product-detail.html" class="title">{{ product.product_name }}</a>
                             <div class="price-wrap mt-2">
                                 <span class="price">${{ product.price }}</span>
-                            </div> <!-- price-wrap.// -->
+                            </div> 
                         </div>
-                        <a href="#" class="btn btn-block btn-primary">Added to cart </a>
+                        <a href="" class="btn btn-block btn-primary">Added to cart </a>
                     </figcaption>
                 </figure>
 
-            </div> <!-- col.// -->
+            </div> 
 
             {% endfor %}
         </div>
