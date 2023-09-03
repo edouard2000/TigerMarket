@@ -11,9 +11,12 @@ def store(request, category_slug=None):
     if category_slug is not None:
         category = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(category=category, is_available=True)
+        paginator = Paginator(products, 1)
+        page = request.GET.get("page")
+        paged_products = paginator.get_page(page)
         products_count = products.count()
     else:
-        products = Product.objects.filter(is_available=True)
+        products = Product.objects.filter(is_available=True).order_by('created_date')
         paginator = Paginator(products, 6)
         page = request.GET.get("page")
         paged_products = paginator.get_page(page)
