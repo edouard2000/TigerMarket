@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist 
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product
 from .models import Cart, CartItem
@@ -10,7 +11,7 @@ def _cart_id(request):
         cart_id = request.session.create()
     return cart_id
 
-#Incrementing product to cart 
+# Incrementing product to cart 
 def add_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
@@ -23,15 +24,18 @@ def add_cart(request, product_id):
     try:
         cart_item = CartItem.objects.get(product=product, cart=cart)
         cart_item.cart_quantity += 1
+        messages.info(request, 'This product quantity was updated.')
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(
             product=product, 
             cart_quantity=1, 
             cart=cart
         )
+        messages.info(request, 'This product was added to your cart.')
 
     cart_item.save()
     return redirect('cart')
+
 
 #Decrementing product from cart
 def remove_cart(request, product_id):

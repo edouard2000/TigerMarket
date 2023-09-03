@@ -125,30 +125,29 @@
         
         <div class="row">
             {% for product in products %}
-
-            <div class="col-md-4">
-                <figure class="card card-product-grid">
-                    <div class="img-wrap">  
-                        <a href="{% url 'product_detail' product.category.slug product.slug %}">
-                            <img src="{{ product.images.url }}" alt="{{ product.product_name }}">
-                        </a>
-                        
-                    </div> 
-                    <figcaption class="info-wrap">
-                        <div class="fix-height">
-                            <a href="./product-detail.html" class="title">{{ product.product_name }}</a>
-                            <div class="price-wrap mt-2">
-                                <span class="price">${{ product.price }}</span>
-                            </div> 
-                        </div>
-                        <a href="" class="btn btn-block btn-primary">Added to cart </a>
-                    </figcaption>
-                </figure>
-
-            </div> 
-
+                <div class="col-md-4">
+                    <figure class="card card-product-grid">
+                        <div class="img-wrap">  
+                            <a href="{% url 'product_detail' product.category.slug product.slug %}">
+                                <img src="{{ product.images.url }}" alt="{{ product.product_name }}">
+                            </a>   
+                        </div> 
+                        <figcaption class="info-wrap">
+                            <div class="fix-height">
+                                <a href="{% url 'product_detail' product.category.slug product.slug %}" class="title">
+                                    {{ product.product_name }}
+                                </a>
+                                <div class="price-wrap mt-2">
+                                    <span class="price">${{ product.price }}</span>
+                                </div> 
+                            </div>
+                                <a href="{{ product.get_url }}" class="btn btn-block btn-primary">View Details</a>
+                        </figcaption>
+                    </figure>
+                </div>
             {% endfor %}
         </div>
+        
         
         
         <nav class="mt-4" aria-label="Page navigation sample">
